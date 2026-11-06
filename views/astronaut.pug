@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  .astronaut-profile
+    .profile-header
+      .profile-avatar
+        span.avatar-icon 👨‍🚀
+      .profile-info
+        h1= astronaut.name
+        .profile-meta
+          span 🏳️ Kraj: #{astronaut.nationality}
+          span 📅 Data urodzenia: #{astronaut.birthDate}
+          span.status-badge
+            if astronaut.status === "Aktywny"
+              span.status-active Aktywny
+            else
+              span.status-ended= astronaut.status
+
+    .profile-content
+      section.bio
+        h2 Biografia
+        p= astronaut.bio
+
+      section.missions
+        h2 Misje
+        if astronaut.missions.length > 0
+          ul.mission-list
+            each mission in astronaut.missions
+              li
+                strong= mission.name
+                | — #{mission.year}
+                if mission.role
+                  | (#{mission.role})
+        else
+          p Brak danych o misjach.
+
+      section.achievements
+        h2 Osiągnięcia
+        ul.achievements-list
+          each achievement in astronaut.achievements
+            li 🏆= achievement
+
+    .back-link
+      a.btn(href="/") ← Wróć na stronę główną

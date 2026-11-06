@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  h1 👨‍🚀 Rekrutacja Astronautów
+
+  .recruit-container
+    .recruit-form
+      h2 Złóż podanie
+      form(method="POST" action="/recruit")
+        .form-group
+          label(for="fullName") Imię i nazwisko:
+          input#fullName(name="fullName" type="text" placeholder="Jan Kowalski" required)
+        .form-group
+          label(for="email") Adres e-mail:
+          input#email(name="email" type="email" placeholder="jan.kowalski@example.com" required)
+        .form-group
+          label(for="birthDate") Data urodzenia:
+          input#birthDate(name="birthDate" type="date")
+        .form-group
+          label(for="experience") Doświadczenie (opcjonalnie):
+          textarea#experience(name="experience" rows="3" placeholder="Opisz swoje doświadczenie związane z lotnictwem, nauką lub eksploracją...")
+        .form-group
+          label(for="motivation") List motywacyjny *
+          textarea#motivation(name="motivation" rows="5" placeholder="Dlaczego chcesz zostać astronautą? Co Cię napędza?" required)
+        .form-actions
+          button.btn.btn-primary(type="submit") Wyślij podanie
+
+    if error
+      .error-banner
+        p ⚠️= error
+
+    if submitted
+      .success-card
+        h2 ✅ Podanie wysłane pomyślnie!
+        .submission-details
+          .detail-row
+            span.label Kod kandydata:
+            span.value.code= submitted.code
+          .detail-row
+            span.label Imię i nazwisko:
+            span.value= submitted.fullName
+          .detail-row
+            span.label E-mail:
+            span.value= submitted.email
+          .detail-row
+            span.label Data urodzenia:
+            span.value= submitted.birthDate || "Nie podano"
+          .detail-row
+            span.label Doświadczenie:
+            span.value= submitted.experience || "Nie podano"
+          .detail-row
+            span.label List motywacyjny:
+            span.value.motivation= submitted.motivation
+          .detail-row
+            span.label Data zgłoszenia:
+            span.value= submitted.submittedAt
+        .btn-group
+          a.btn(href="/recruit") Złóż kolejne podanie
+          a.btn.btn-secondary(href="/astronauts/MAR-005") Poznaj polskich astronautów

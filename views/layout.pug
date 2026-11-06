@@ -1,0 +1,40 @@
+doctype html
+html(lang="pl")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= title
+    link(rel="stylesheet" href="/css/style.css")
+    block head
+  body
+    header
+      nav
+        .nav-container
+          a.logo(href="/")
+            span.logo-icon 🚀
+            span.logo-text Centrum Kosmosu
+          ul.nav-links
+            li
+              a(href="/") Strona główna
+            li
+              a(href="/missions") Misje
+            li
+              a(href="/calculator") Kalkulator
+            li
+              a(href="/recruit") Rekrutacja
+            li
+              a(href="/reports") Raporty
+            li
+              a(href="/upload") Upload
+            li
+              a(href="/api/stats") API
+
+    main
+      block content
+
+    footer
+      .footer-container
+        p &copy; 2024 Centrum Eksploracji Kosmosu. Wszystkie prawa zastrzeżone.
+        p Wykorzystuje: Node.js, Express.js, Pug, Multer
+
+    script(src="/js/main.js")

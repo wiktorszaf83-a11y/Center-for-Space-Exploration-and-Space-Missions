@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .error-page
+    .error-icon
+      if title.includes("404")
+        span 🕳️
+      else
+        span ⚠️
+    h1= title
+    .error-message
+      p= message
+    .error-actions
+      a.btn.btn-primary(href="/") ← Wróć na stronę główną
+      a.btn.btn-secondary(href="javascript:history.back()") ← Wróć do poprzedniej strony

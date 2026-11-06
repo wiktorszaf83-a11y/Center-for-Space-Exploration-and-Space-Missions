@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  h1 🛰️ Katalog Misji Kosmicznych
+
+0  .search-section
+    h2 🔍 Wyszukaj misję
+    form(action="/missions" method="GET")
+      .form-group
+        label(for="q") Szukaj (nazwa, cel, opis):
+        input#q(name="q" type="text" placeholder="np. Mars, Księżyc..." value=query)
+      .form-row
+        .form-group
+          label(for="year") Rok:
+          select#year(name="year")
+            option(value="") — Wszystkie —
+            each year in [2022, 2021, 2020, 2011, 2012, 2007, 1990, 1977, 1970, 1969]
+              option(value=year selected=(yearFilter === year))= year
+        .form-group
+          label(for="status") Status:
+          select#status(name="status")
+            option(value="") — Wszystkie —
+            option(value="Aktywna" selected=(statusFilter === "Aktywna")) Aktywna
+            option(value="Zakończona" selected=(statusFilter === "Zakończona")) Zakończona
+      .form-actions
+        button.btn.btn-primary(type="submit") 🔍 Szukaj
+        a.btn.btn-secondary(href="/missions") Resetuj
+
+  .results-info
+    if hasFilters
+      p Znaleziono: #{totalResults} misji (filtry: #{query || "brak"} | rok: #{yearFilter || "wszystkie"} | status: #{statusFilter || "wszystkie"})
+    else
+      p Wszystkie misje w bazie: #{missions.length}
+
+  if missions.length > 0
+    .missions-grid
+      each mission in missions
+        .mission-card
+          .mission-icon= mission.image
+          h3= mission.name
+          p.cargo Cel: #{mission.destination}
+          p.date Rok: #{mission.year}
+          .mission-status
+            if mission.status === "Aktywna"
+              span.status-active Aktywna
+            else
+              span.status-ended Zakończona
+          p.duration Czas: #{mission.duration}
+          p.cost Koszt: #{mission.cost}
+          a.btn(href='/missions/' + mission.id) Szczegóły →
+  else
+    .no-results
+      p 😔 Nie znaleziono misji spełniających kryteria.
+      a.btn(href="/missions") Pokaż wszystkie misje

@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .detail-page
+    .detail-header
+      .detail-icon= mission.image
+      h1= mission.name
+      .detail-meta
+        span 🎯 Cel: #{mission.destination}
+        span 📅 Rok: #{mission.year}
+        span.status-badge
+          if mission.status === "Aktywna"
+            span.status-active Aktywna
+          else
+            span.status-ended Zakończona
+
+    .detail-content
+      section.description
+        h2 Opis misji
+        p= mission.description
+
+      section.details
+        h2 Szczegóły techniczne
+        .detail-grid
+          .detail-item
+            span.label Czas trwania:
+            span.value= mission.duration
+          .detail-item
+            span.label Koszt:
+            span.value= mission.cost
+          .detail-item
+            span.label Załoga:
+            span.value= mission.crew.length > 0 ? mission.crew.join(", ") : "Sonda bezzałogowa"
+
+      if mission.crew.length > 0
+        section.crew
+          h2 Załoga
+          ul.crew-list
+            each member in mission.crew
+              li 👨‍🚀 #{member}
+
+    .back-link
+      a.btn(href="/missions") ← Wróć do katalogu

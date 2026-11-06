@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  h1 🪐 Kalkulator Wag na Planetach
+
+  .calculator-container
+    .calculator-form
+      h2 Oblicz swoją wagę
+      form(method="POST" action="/calculator")
+        .form-group
+          label(for="earthWeight") Twoja masa na Ziemi (kg):
+          input#earthWeight(name="earthWeight" type="number" step="0.1" min="0.1" placeholder="np. 70" value=earthWeight || "")
+        .form-group
+          label(for="planet") Wybierz planetę:
+          select#planet(name="planet")
+            option(value="") — Wybierz planetę —
+            each planet in planets
+              option(value=planet.name)= planet.name + " (" + planet.gravity + "g)"
+        .form-actions
+          button.btn.btn-primary(type="submit") Oblicz wagę
+
+    if result
+      .result-card
+        h2 🎉 Wynik
+        .result-planet(style=`background: ${result.color}`)
+          .result-planet-name= result.planet
+          .result-planet-gravity= result.gravity + "g"
+        .result-values
+          .result-row
+            span.label Masa na Ziemi:
+            span.value= result.earthWeight + " kg"
+          .result-row.highlight
+            span.label Masa na #{result.planet}:
+            span.value= result.weightOnPlanet + " kg"
+        .result-funfact
+          p 💡 Na #{result.planet} jesteś #{(1 / result.gravity).toFixed(1)}x lżejszy/a niż na Ziemi!
+
+    if error
+      .error-banner
+        p ⚠️ #{error}
+
+    .comparison-section
+      h2 Porównanie wag na wszystkich planetach
+      if earthWeight && !isNaN(parseFloat(earthWeight))
+        table.comparison-table
+          thead
+            tr
+              th Planeta
+              th Grawitacja
+              th Twoja waga
+          tbody
+            each planet in planets
+              tr
+                td
+                  span.planet-dot(style=`background: ${planet.color}`)
+                  = planet.name
+                td= planet.gravity + "g"
+                td.weight-cell= (parseFloat(earthWeight) * planet.gravity).toFixed(2) + " kg"
+      else
+        p Wpisz swoją masę, aby zobaczyć porównanie.

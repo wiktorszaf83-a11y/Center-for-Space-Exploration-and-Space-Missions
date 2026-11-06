@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  .hero
+    h1 🌌 Centrum Eksploracji Kosmosu
+    p Misje, planety i przyszłość podboju kosmosu — wszystko w jednym miejscu.
+
+  .stats-bar
+    .stat-card
+      .stat-number= totalMissions
+      .stat-label Misje w bazie
+    .stat-card
+      .stat-number= totalAstronauts
+      .stat-label Astronautów
+    .stat-card
+      .stat-number= activeMissions.length
+      .stat-label Misji aktywnych
+
+  section.missions-preview
+    h2 🛰️ Ostatnie misje
+    .missions-grid
+      each mission in recentMissions
+        .mission-card
+          .mission-icon= mission.image
+          h3= mission.name
+          p.cargo= mission.destination
+          p.date Rok: #{mission.year}
+          a.btn(href='/missions/' + mission.id) Szczegóły →
+
+  section.active-missions
+    h2 ⭐ Aktywne misje
+    if activeMissions.length > 0
+      .missions-list
+        each mission in activeMissions
+          .mission-item
+            span.mission-status.status-active ●
+            strong= mission.name
+            | — #{mission.destination} (od #{mission.year})
+    else
+      p Brak aktywnych misji.
+
+  section.info
+    h2 🌍 O projekcie
+    p Centrum Eksploracji Kosmosu to interaktywna aplikacja edukacyjna prezentująca historię i współczesne misje kosmiczne. Poznaj planety Układu Słonecznego, oblicz swoją wagę na innych światach i śledź najnowsze osiągnięcia astronautyki.

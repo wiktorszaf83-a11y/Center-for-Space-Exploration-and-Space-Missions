@@ -1,0 +1,20 @@
+{
+  "name": "Szybki Ubuntu Sandbox dla Cline",
+  "image": "devcontainer-cline-ready:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "saoudrizwan.claude-dev"
+      ]
+    }
+  },
+  "runArgs": [
+    "--security-opt", "seccomp=unconfined",
+    "--security-opt", "no-new-privileges=false"
+  ],
+  "mounts": [
+    "source=cline-extension-data,target=/home/vscode/.config/Code,type=volume"
+  ],
+  "remoteUser": "vscode",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ripgrep"
+}

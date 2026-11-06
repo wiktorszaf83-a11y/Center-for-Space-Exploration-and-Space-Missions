@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1 📊 Pobieranie Raportów
+
+  .reports-container
+    .reports-intro
+      p Pobierz raporty w różnych formatach. Wszystkie pliki generowane są dynamicznie na podstawie aktualnych danych.
+
+    .reports-grid
+      .report-card
+        .report-icon 📄
+        h3 Raport misji (CSV)
+        p Pełna lista misji w formacie CSV — idealny do arkuszy kalkulacyjnych.
+        a.btn.btn-primary(href="/reports/download-missions") ⬇ Pobierz CSV
+
+      .report-card
+        .report-icon 📋
+        h3 Raport planet (TXT)
+        p Szczegółowy opis wszystkich planet Układu Słonecznego w formacie tekstowym.
+        a.btn.btn-primary(href="/reports/download-planets") ⬇ Pobierz TXT
+
+    .api-section
+      h2 🌐 API — dane w formacie JSON
+      p Skorzystaj z naszych endpointów API, aby pobrać dane w formacie JSON.
+      .api-cards
+        .api-card
+          code /api/stats
+          p Statystyki planet i misji
+          a.btn(href="/api/stats") Wywołaj API →
+        .api-card
+          code /api/astronauts
+          p Lista astronautów
+          a.btn(href="/api/astronauts") Wywołaj API →
+
+    .health-section
+      h2 🏥 Status serwera
+      p Sprawdź status działania serwera.
+      a.btn.btn-secondary(href="/health") Sprawdź status →

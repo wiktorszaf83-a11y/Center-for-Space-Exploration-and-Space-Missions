@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1 📤 Przesyłanie Plików
+
+  .upload-container
+    .upload-form
+      h2 Prześlij plik
+      form(method="POST" action="/upload" enctype="multipart/form-data")
+        .form-group
+          label(for="file") Wybierz plik (max 5 MB):
+          input#file(name="file" type="file" accept=".jpg,.jpeg,.png,.gif,.pdf,.txt,.csv" required)
+          small#file-info(style="display:none; color: var(--accent);")
+          small Dozwolone formaty: JPEG, PNG, GIF, PDF, TXT, CSV
+        .form-actions
+          button.btn.btn-primary(type="submit") 📤 Prześlij plik
+
+    if error
+      .error-banner
+        p ⚠️= error
+
+    if uploadedFile
+      .success-card
+        p ✅ Plik przesłany pomyślnie:
+        a.uploaded-link(href=uploadedFile) target="_blank"= uploadedFile
+
+    if files.length > 0
+      .files-section
+        h2 Przesłane pliki
+        .files-grid
+          each file in files
+            .file-card
+              .file-icon
+                if file.name.match(/\.(jpg|jpeg|png|gif)$/i)
+                  img(src=file.url, alt=file.name)
+                else
+                  span.file-icon-text 📎
+              .file-info
+                p.file-name= file.name
+                p.file-size= (file.size / 1024).toFixed(1) + " KB"
+                a.file-link(href=file.url) target="_blank" Otwórz →
