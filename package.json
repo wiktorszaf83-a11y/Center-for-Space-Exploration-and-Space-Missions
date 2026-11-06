@@ -1,7 +1,7 @@
 {
   "name": "centrum-eksploracji-kosmosu",
   "version": "1.0.0",
-  "description": "Centrum Eksploracji Kosmosu i Misji Kosmicznych — aplikacja webowa Node.js/Express.js/Pug",
+  "description": "Centrum Eksploracji Kosmosu i Misji Kosmicznych - aplikacja webowa Node.js/Express.js/Pug",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

@@ -1,50 +1,48 @@
 <div align="center">
 
-# 🚀 Centrum Eksploracji Kosmosu
+# 🚀 Center for Space Exploration and Space Missions
 
-**Centrum Eksploracji Kosmosu i Misji Kosmicznych**
+**Center for Space Exploration and Space Missions**
 
-Aplikacja webowa o misjach kosmicznych, planetach Układu Słonecznego i astronautach — z interaktywnymi formularzami, generowaniem raportów i publicznym API.
+A web application about space missions, the planets of the Solar System and astronauts - with interactive forms, report generation and a public API.
 
 *Node.js · Express · Pug · Multer · Vanilla JS*
 
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=node.js&logoColor=white)](#-szybki-start)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=node.js&logoColor=white)](#-quick-start)
 [![Express](https://img.shields.io/badge/Express-4.21-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
 [![Pug](https://img.shields.io/badge/Pug-3.0-A5B6D2?style=flat-square&logo=pug&logoColor=white)](https://pugjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
-
-**PL** · [English →](#english)
 
 </div>
 
 ---
 
-## ✨ Funkcje
+## ✨ Features
 
-| | Moduł | Co robi |
+| | Module | What it does |
 |---|---|---|
-| 🛰️ | **Katalog misji** | 8 misji kosmicznych z opisem, załogą, kosztem, czasem trwania i statusem; podgląd szczegółów każdej misji (`/missions/:id`) |
-| 🪐 | **Kalkulator wagi** | Oblicza wagę ciała na wszystkich 8 planetach na podstawie lokalnej grawitacji |
-| 👩‍🚀 | **Rekrutacja astronautów** | Formularz zgłoszeniowy z walidacją (imię, e-mail, motywacja) i generowaniem unikalnego kodu kandydata |
-| 📊 | **Generowanie raportów** | Pobranie raportu misji jako CSV i raportu planet jako TXT — pliki są tworzone dynamicznie w czasie żądania |
-| 📁 | **Przesył plików** | Upload do 5 MB z filtrem typów (`jpeg`, `jpg`, `png`, `gif`, `pdf`, `txt`, `csv`) |
-| 🔌 | **Publiczne API** | Endpointy JSON: statystyki planet i misji, lista astronautów, profil astronauty oraz endpoint `health` |
+| 🛰️ | **Mission catalog** | 8 space missions with description, crew, cost, duration and status; detail view for each mission (`/missions/:id`) |
+| 🪐 | **Weight calculator** | Calculates your body weight on all 8 planets using each planet's local gravity |
+| 👩‍🚀 | **Astronaut recruitment** | Application form with validation (name, e-mail, motivation) and automatic generation of a unique candidate code |
+| 📊 | **Report generation** | Download the mission report as CSV and the planet report as TXT - files are created dynamically on request |
+| 📁 | **File upload** | Upload up to 5 MB with a type filter (`jpeg`, `jpg`, `png`, `gif`, `pdf`, `txt`, `csv`) |
+| 🔌 | **Public API** | JSON endpoints: planet and mission statistics, astronaut list, astronaut profile and a `health` endpoint |
 
-## 🧱 Stack technologiczny
+## 🧱 Tech stack
 
-- **Runtime**: Node.js **18+** (testowane na v22)
-- **Serwer**: Express `^4.21`
-- **Silnik widoków**: Pug `^3.0` — wspólny `layout.pug` i widoki dziedziczące po nim
-- **Upload plików**: Multer `^1.4.5-lts.1` z `diskStorage`
-- **Frontend**: Vanilla JS + CSS ze zmiennymi CSS (dark cosmic theme)
-- **Zero zależności bazodanowych** — dane aplikacji to moduły CommonJS (`module.exports`) w katalogu [`data/`](data/)
+- **Runtime**: Node.js **18+** (tested on v22)
+- **Server**: Express `^4.21`
+- **View engine**: Pug `^3.0` - shared `layout.pug` and views inheriting from it
+- **File uploads**: Multer `^1.4.5-lts.1` with `diskStorage`
+- **Frontend**: Vanilla JS + CSS with custom properties (dark cosmic theme)
+- **No database dependencies** - application data are CommonJS modules (`module.exports`) in the [`data/`](data/) directory
 
-## 📁 Struktura
+## 📁 Project structure
 
 ```text
 .
-├── app.js                  # wejście aplikacji: Express, middleware, route'y
-├── controllers/            # logika biznesowa (1 plik = 1 domena)
+├── app.js                  # application entry point: Express, middleware, routes
+├── controllers/            # business logic (1 file = 1 domain)
 │   ├── homeController.js
 │   ├── missionsController.js
 │   ├── calculatorController.js
@@ -52,61 +50,61 @@ Aplikacja webowa o misjach kosmicznych, planetach Układu Słonecznego i astrona
 │   ├── reportsController.js
 │   ├── uploadController.js
 │   └── apiController.js
-├── routes/                 # definicje tras (1 plik = 1 domena)
+├── routes/                 # route definitions (1 file = 1 domain)
 ├── middleware/
-│   └── logger.js           # logowanie żądań + weryfikacja nagłówka Referer
-├── data/                   # dane aplikacji: misje, planety, astronauci
-├── views/                  # szablony Pug (layout.pug + 9 widoków)
+│   └── logger.js           # request logging + Referer header verification
+├── data/                   # application data: missions, planets, astronauts
+├── views/                  # Pug templates (layout.pug + 9 views)
 ├── public/
 │   ├── css/style.css
 │   ├── js/main.js
-│   └── uploads/            # katalog dla plików usera (.gitkeep utrzymuje go w repo)
-└── .devcontainer/          # gotowe środowisko dev (Dev Containers)
+│   └── uploads/            # directory for user files (.gitkeep keeps it in the repo)
+└── .devcontainer/          # ready-to-use development environment (Dev Containers)
 ```
 
-> Wzorzec: **route → controller → data**. Każda domena ma własny plik tras i kontrolera, dzięki czemu trasy i logika są rozłączne.
+> Pattern: **route → controller → data**. Every domain has its own route file and controller, so routing and business logic stay separate.
 
-## 🚀 Szybki start
+## 🚀 Quick start
 
 ```bash
-# 1. Pobranie repozytorium
+# 1. Clone the repository
 git clone https://github.com/wiktorszaf83-a11y/Center-for-Space-Exploration-and-Space-Missions.git
 cd Center-for-Space-Exploration-and-Space-Missions
 
-# 2. Instalacja zależności
+# 2. Install dependencies
 npm install
 
-# 3a. Uruchomienie produkcyjne
+# 3a. Production run
 npm start
 
-# 3b. Tryb dev z auto-reloadem (`node --watch`)
+# 3b. Development mode with auto-reload (`node --watch`)
 npm run dev
 ```
 
-Otwórz → **http://localhost:3000**
+Open → **http://localhost:3000**
 
-Zmienne środowiskowe (opcjonalne):
+Environment variables (optional):
 
-| Zmienna | Domyślnie | Efekt |
+| Variable | Default | Effect |
 |---|---|---|
-| `PORT` | `3000` | port serwera |
-| `NODE_ENV` | — | `production` włącza weryfikację nagłówka `Referer` w [`middleware/logger.js`](middleware/logger.js:18) |
+| `PORT` | `3000` | server port |
+| `NODE_ENV` | - | `production` enables `Referer` header verification in [`middleware/logger.js`](middleware/logger.js:18) |
 
-## 🗺️ Trasy
+## 🗺️ Routes
 
-| Metoda | Ścieżka | Widok / akcja |
+| Method | Path | View / action |
 |---|---|---|
-| `GET` | `/` | Strona główna (ostatnie misje, aktywne misje, liczniki) |
-| `GET` | `/missions` | Katalog misji |
-| `GET` | `/missions/:id` | Szczegóły misji |
-| `GET` `POST` | `/calculator` | Kalkulator wagi na planetach |
-| `GET` `POST` | `/recruit` | Formularz rekrutacji astronautów |
-| `GET` | `/reports` | Strona pobierania raportów |
-| `GET` | `/reports/download-missions` | Pobranie raportu misji (CSV) |
-| `GET` | `/reports/download-planets` | Pobranie raportu planet (TXT) |
-| `GET` `POST` | `/upload` | Przesył pliku (limit 5 MB) |
-| `GET` | `/astronauts/:code` | Profil astronauty |
-| `GET` | `/health` | Status serwera (text/plain) |
+| `GET` | `/` | Home page (recent missions, active missions, counters) |
+| `GET` | `/missions` | Mission catalog |
+| `GET` | `/missions/:id` | Mission details |
+| `GET` `POST` | `/calculator` | Weight calculator on planets |
+| `GET` `POST` | `/recruit` | Astronaut recruitment form |
+| `GET` | `/reports` | Report download page |
+| `GET` | `/reports/download-missions` | Download mission report (CSV) |
+| `GET` | `/reports/download-planets` | Download planet report (TXT) |
+| `GET` `POST` | `/upload` | File upload (5 MB limit) |
+| `GET` | `/astronauts/:code` | Astronaut profile |
+| `GET` | `/health` | Server status (text/plain) |
 
 ## 🔌 API
 
@@ -136,43 +134,35 @@ curl http://localhost:3000/api/astronauts
 }
 ```
 
-## 🗂️ Dane w projekcie
+## 🗂️ Data in the project
 
-- **8 misji**: Apollo 11, Voyager 1, Mars Perseverance, Teleskop Hubble'a, Apollo 13, James Webb, Artemis I, Mars Curiosity
-- **8 planet**: Merkury, Wenus, Ziemia, Mars, Jowisz, Saturn, Uran, Neptun (grawitacja, księżyce, średnica, odległość od Słońca, typ)
-- **5 astronautów**: Neil Armstrong, Buzz Aldrin, Sally Ride, Chris Hadfield, Marek Tomczyk (kod, narodowość, status, misje, loty, dni w kosmosie)
+- **8 missions**: Apollo 11, Voyager 1, Mars Perseverance, Hubble Space Telescope, Apollo 13, James Webb, Artemis I, Mars Curiosity
+- **8 planets**: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune (gravity, moons, diameter, distance from the Sun, type)
+- **5 astronauts**: Neil Armstrong, Buzz Aldrin, Sally Ride, Chris Hadfield, Marek Tomczyk (code, nationality, status, missions, flights, days in space)
 
-## 🛠️ Dobre praktyki zastosowane w kodzie
+> Note: the UI text, seed data values and status names are stored in Polish (`Merkury` = Mercury, `Skalista` = Rocky, `Aktywna` = Active), so API responses return Polish strings.
 
-- **Warstwowa struktura** `routes/` → `controllers/` → `data/`, jedna domena na plik
-- **Middleware** z logowaniem czasu wykonania żądania, kodu odpowiedzi i IP ([`requestLogger`](middleware/logger.js:1))
-- **Walidacja po stronie serwera** dla kalkulatora i rekrutacji + **walidacja kliencka** w [`public/js/main.js`](public/js/main.js:1) (limit 1000 kg, limit 5 MB pliku)
-- **Dynamiczne pliki poza repo** — raporty i pliki usera generowane w czasie działania są wykluczone przez [`.gitignore`](.gitignore:1); katalog `public/uploads` utrzymuje [`public/uploads/.gitkeep`](public/uploads/.gitkeep)
-- **Obsługa błędów**: handler 404 i handler 500 renderują widok [`error.pug`](views/error.pug:1)
+## 🛠️ Good practices used in the code
 
-## 📝 Wskazówki dla osób rozwijających
+- **Layered structure** `routes/` → `controllers/` → `data/`, one domain per file
+- **Middleware** logging request duration, response status code and IP ([`requestLogger`](middleware/logger.js:1))
+- **Server-side validation** for the calculator and recruitment form + **client-side validation** in [`public/js/main.js`](public/js/main.js:1) (1000 kg weight limit, 5 MB file limit)
+- **Generated files stay outside the repo** - reports and user files created at runtime are excluded by [`.gitignore`](.gitignore:1); the `public/uploads` directory is kept by [`public/uploads/.gitkeep`](public/uploads/.gitkeep)
+- **Error handling**: the 404 and 500 handlers render the [`error.pug`](views/error.pug:1) view
 
-1. Nowa trasa → dodaj plik w `routes/` i podłącz go w [`app.js`](app.js:27).
-2. Nowy widok → szablon Pug w `views/`, dziedziczenie przez `extends layout`.
-3. Zmiana danych → plik w `data/`; zwracany jako moduł eksportujący tablicę.
-4. Raporty i pliki usera nie trafiają do repo — patrz sekcja plików generowanych w [`.gitignore`](.gitignore:18).
+## 📝 Tips for developers
 
-## 📄 Licencja
+1. New route → add a file in `routes/` and mount it in [`app.js`](app.js:27).
+2. New view → Pug template in `views/`, inheritance via `extends layout`.
+3. Data change → a file in `data/`; exported as a module exporting an array.
+4. Reports and user files never reach the repo - see the generated-files section in [`.gitignore`](.gitignore:18).
 
-Wydane na licencji **MIT** — szczegóły w pliku [`LICENSE`](LICENSE).
+## 📄 License
 
----
-
-<a id="english"></a>
-
-## English
-
-**Center for Space Exploration and Space Missions** is a Node.js/Express web application featuring space missions, the planets of the Solar System, and astronauts, with interactive forms, report generation, and a public API. Views are rendered with the Pug engine; file uploads are handled by Multer. It runs as a standard Node.js server with a layered structure: `routes` → `controllers` → `data`.
-
-Quick start: `npm install` → `npm start` → open **http://localhost:3000**. Full documentation (in Polish) above.
+Released under the **MIT** license - see the [`LICENSE`](LICENSE) file.
 
 <div align="center">
 
-**⬤⬤⬤** — *Ad astra per aspera*
+**⬤⬤⬤** - *Ad astra per aspera*
 
 </div>

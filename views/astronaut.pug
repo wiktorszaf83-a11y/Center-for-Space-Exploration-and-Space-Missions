@@ -28,7 +28,7 @@ block content
             each mission in astronaut.missions
               li
                 strong= mission.name
-                | — #{mission.year}
+                | - #{mission.year}
                 if mission.role
                   | (#{mission.role})
         else

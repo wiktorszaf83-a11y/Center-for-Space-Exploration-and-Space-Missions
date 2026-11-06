@@ -33,7 +33,7 @@ app.use("/", apiRoutes);
 
 app.use((req, res) => {
   res.status(404).render("error", {
-    title: "404 — Strona nie znaleziona",
+    title: "404 - Strona nie znaleziona",
     message: `Strona "${req.originalUrl}" nie istnieje w Centrum Eksploracji Kosmosu.`,
   });
 });
@@ -41,7 +41,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error("Błąd aplikacji:", err.message);
   res.status(500).render("error", {
-    title: "500 — Błąd serwera",
+    title: "500 - Błąd serwera",
     message: "Wystąpił nieoczekiwany błąd na serwerze. Spróbuj ponownie później.",
   });
 });

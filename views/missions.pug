@@ -13,13 +13,13 @@ block content
         .form-group
           label(for="year") Rok:
           select#year(name="year")
-            option(value="") — Wszystkie —
+            option(value="") - Wszystkie -
             each year in [2022, 2021, 2020, 2011, 2012, 2007, 1990, 1977, 1970, 1969]
               option(value=year selected=(yearFilter === year))= year
         .form-group
           label(for="status") Status:
           select#status(name="status")
-            option(value="") — Wszystkie —
+            option(value="") - Wszystkie -
             option(value="Aktywna" selected=(statusFilter === "Aktywna")) Aktywna
             option(value="Zakończona" selected=(statusFilter === "Zakończona")) Zakończona
       .form-actions

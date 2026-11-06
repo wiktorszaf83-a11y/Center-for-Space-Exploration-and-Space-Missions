@@ -13,7 +13,7 @@ block content
         .form-group
           label(for="planet") Wybierz planetę:
           select#planet(name="planet")
-            option(value="") — Wybierz planetę —
+            option(value="") - Wybierz planetę -
             each planet in planets
               option(value=planet.name)= planet.name + " (" + planet.gravity + "g)"
         .form-actions
