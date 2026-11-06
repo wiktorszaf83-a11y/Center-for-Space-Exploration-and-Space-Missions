@@ -15,14 +15,5 @@ function requestLogger(req, res, next) {
   next();
 }
 
-function refererVerifier(req, res, next) {
-  if (process.env.NODE_ENV === "production") {
-    const referer = req.get("Referer");
-    if (!referer || !referer.includes("centrum-kosmosu")) {
-      return res.status(403).json({ error: "Dostęp zabroniony — nieprawidłowy nagłówek Referer." });
-    }
-  }
-  next();
-}
 
-module.exports = { requestLogger, refererVerifier };
+module.exports = { requestLogger };

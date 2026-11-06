@@ -18,7 +18,6 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(requestLogger);
-app.use(refererVerifier);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
